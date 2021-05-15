@@ -47,6 +47,26 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -61,40 +81,60 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Admin.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="Fonksiyonel Sınıflar\Alım.cs" />
+    <Compile Include="Fonksiyonel Sınıflar\ParaKontrol.cs" />
+    <Compile Include="Fonksiyonel Sınıflar\ParaOnayListele.cs" />
+    <Compile Include="Fonksiyonel Sınıflar\SatılıkUrunListem.cs" />
+    <Compile Include="Fonksiyonel Sınıflar\PazarListele.cs" />
+    <Compile Include="Fonksiyonel Sınıflar\UrunKontrol.cs" />
+    <Compile Include="Fonksiyonel Sınıflar\UrunListem.cs" />
+    <Compile Include="Fonksiyonel Sınıflar\UrunOnayListele.cs" />
+    <Compile Include="Interfaceler\IKontrol.cs" />
+    <Compile Include="Fonksiyonel Sınıflar\Kullanıcı.cs" />
+    <Compile Include="Interfaceler\IListe.cs" />
+    <Compile Include="Kurucu Sınıflar\EklemeFabrikası.cs" />
+    <Compile Include="Formlar\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
+    <Compile Include="Formlar\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form2.cs">
+    <Compile Include="Formlar\Form2.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form2.Designer.cs">
+    <Compile Include="Formlar\Form2.Designer.cs">
       <DependentUpon>Form2.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form3.cs">
+    <Compile Include="Formlar\Form3.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form3.Designer.cs">
+    <Compile Include="Formlar\Form3.Designer.cs">
       <DependentUpon>Form3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Interfaceler\IEkle.cs" />
+    <Compile Include="Interfaceler\IOnay.cs" />
+    <Compile Include="Kurucu Sınıflar\KontrolFabrikası.cs" />
+    <Compile Include="Kurucu Sınıflar\ListelemeFabrikası.cs" />
+    <Compile Include="Kurucu Sınıflar\OnayFabrikası.cs" />
+    <Compile Include="Fonksiyonel Sınıflar\ParaEkle.cs" />
+    <Compile Include="Fonksiyonel Sınıflar\ParaOnay.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ÜyeOl.cs">
+    <Compile Include="Fonksiyonel Sınıflar\UrunEkle.cs" />
+    <Compile Include="Fonksiyonel Sınıflar\UrunOnay.cs" />
+    <Compile Include="Formlar\ÜyeOl.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ÜyeOl.Designer.cs">
+    <Compile Include="Formlar\ÜyeOl.Designer.cs">
       <DependentUpon>ÜyeOl.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Form1.resx">
+    <EmbeddedResource Include="Formlar\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form2.resx">
+    <EmbeddedResource Include="Formlar\Form2.resx">
       <DependentUpon>Form2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form3.resx">
+    <EmbeddedResource Include="Formlar\Form3.resx">
       <DependentUpon>Form3.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -107,7 +147,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="ÜyeOl.resx">
+    <EmbeddedResource Include="Formlar\ÜyeOl.resx">
       <DependentUpon>ÜyeOl.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
@@ -155,11 +195,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\trading.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\23_256x256.png" />
-    <None Include="Resources\background.jpg" />
-    <None Include="Resources\borsa.jpg" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">

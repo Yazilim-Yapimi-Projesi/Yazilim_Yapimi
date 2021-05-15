@@ -11,3 +11,20 @@ C:\Users\HamzaKaya\Desktop\yazılım Yapımı projesi\yazilimYapimi\yazilimYapim
 C:\Users\HamzaKaya\Desktop\yazılım Yapımı projesi\yazilimYapimi\yazilimYapimi\obj\Debug\yazilimYapimi.csproj.CoreCompileInputs.cache
 C:\Users\HamzaKaya\Desktop\yazılım Yapımı projesi\yazilimYapimi\yazilimYapimi\obj\Debug\yazilimYapimi.exe
 C:\Users\HamzaKaya\Desktop\yazılım Yapımı projesi\yazilimYapimi\yazilimYapimi\obj\Debug\yazilimYapimi.pdb
+C:\Users\HamzaKaya\Desktop\yazılım Yapımı projesi\yazilimYapimi\yazilimYapimi\bin\Debug\deneme.mdf
+C:\Users\HamzaKaya\Desktop\yazılım Yapımı projesi\yazilimYapimi\yazilimYapimi\bin\Debug\deneme_log.ldf
+C:\Users\O.F.Y\source\C# Projeler\yazılım Yapımı projesi\yazilimYapimi\yazilimYapimi\obj\Debug\yazilimYapimi.csprojAssemblyReference.cache
+C:\Users\O.F.Y\source\C# Projeler\yazılım Yapımı projesi\yazilimYapimi\yazilimYapimi\obj\Debug\yazilimYapimi.Form1.resources
+C:\Users\O.F.Y\source\C# Projeler\yazılım Yapımı projesi\yazilimYapimi\yazilimYapimi\obj\Debug\yazilimYapimi.Form2.resources
+C:\Users\O.F.Y\source\C# Projeler\yazılım Yapımı projesi\yazilimYapimi\yazilimYapimi\obj\Debug\yazilimYapimi.Form3.resources
+C:\Users\O.F.Y\source\C# Projeler\yazılım Yapımı projesi\yazilimYapimi\yazilimYapimi\obj\Debug\yazilimYapimi.Properties.Resources.resources
+C:\Users\O.F.Y\source\C# Projeler\yazılım Yapımı projesi\yazilimYapimi\yazilimYapimi\obj\Debug\yazilimYapimi.ÜyeOl.resources
+C:\Users\O.F.Y\source\C# Projeler\yazılım Yapımı projesi\yazilimYapimi\yazilimYapimi\obj\Debug\yazilimYapimi.csproj.GenerateResource.cache
+C:\Users\O.F.Y\source\C# Projeler\yazılım Yapımı projesi\yazilimYapimi\yazilimYapimi\obj\Debug\yazilimYapimi.csproj.CoreCompileInputs.cache
+C:\Users\O.F.Y\source\C# Projeler\yazılım Yapımı projesi\yazilimYapimi\yazilimYapimi\obj\Debug\yazilimYapimi.exe
+C:\Users\O.F.Y\source\C# Projeler\yazılım Yapımı projesi\yazilimYapimi\yazilimYapimi\obj\Debug\yazilimYapimi.pdb
+C:\Users\O.F.Y\source\C# Projeler\yazılım Yapımı projesi\yazilimYapimi\yazilimYapimi\bin\Debug\deneme.mdf
+C:\Users\O.F.Y\source\C# Projeler\yazılım Yapımı projesi\yazilimYapimi\yazilimYapimi\bin\Debug\deneme_log.ldf
+C:\Users\O.F.Y\source\C# Projeler\yazılım Yapımı projesi\yazilimYapimi\yazilimYapimi\bin\Debug\yazilimYapimi.exe.config
+C:\Users\O.F.Y\source\C# Projeler\yazılım Yapımı projesi\yazilimYapimi\yazilimYapimi\bin\Debug\yazilimYapimi.exe
+C:\Users\O.F.Y\source\C# Projeler\yazılım Yapımı projesi\yazilimYapimi\yazilimYapimi\bin\Debug\yazilimYapimi.pdb
