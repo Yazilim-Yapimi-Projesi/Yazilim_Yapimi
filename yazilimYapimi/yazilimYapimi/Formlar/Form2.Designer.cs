@@ -123,7 +123,7 @@ namespace yazilimYapimi
             this.label1.Location = new System.Drawing.Point(111, 165);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(117, 31);
+            this.label1.Size = new System.Drawing.Size(94, 25);
             this.label1.TabIndex = 2;
             this.label1.Text = "İşlemler";
             // 
@@ -214,7 +214,7 @@ namespace yazilimYapimi
             this.labe3.Location = new System.Drawing.Point(930, 491);
             this.labe3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labe3.Name = "labe3";
-            this.labe3.Size = new System.Drawing.Size(290, 50);
+            this.labe3.Size = new System.Drawing.Size(238, 40);
             this.labe3.TabIndex = 7;
             this.labe3.Text = "İsimli Kişinin Talebini\r\n Onaylamak İstiyormusunuz?";
             // 
@@ -252,7 +252,7 @@ namespace yazilimYapimi
             this.label_isimPara.AutoSize = true;
             this.label_isimPara.Location = new System.Drawing.Point(837, 491);
             this.label_isimPara.Name = "label_isimPara";
-            this.label_isimPara.Size = new System.Drawing.Size(46, 17);
+            this.label_isimPara.Size = new System.Drawing.Size(45, 16);
             this.label_isimPara.TabIndex = 27;
             this.label_isimPara.Text = "label2";
             // 
@@ -309,7 +309,8 @@ namespace yazilimYapimi
             this.Controls.Add(this.panel1);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form2";
-            this.Text = "Form2";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Alım-Satım Yönetim Sistemi";
             this.Load += new System.EventHandler(this.Form2_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

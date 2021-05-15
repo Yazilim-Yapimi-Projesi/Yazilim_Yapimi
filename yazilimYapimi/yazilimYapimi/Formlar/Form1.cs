@@ -54,5 +54,7 @@ namespace yazilimYapimi
             }
             Temizle();
         }
+
+       
     }
 }
