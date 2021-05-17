@@ -297,7 +297,6 @@ namespace yazilimYapimi
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ÜyeOl";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Load += new System.EventHandler(this.ÜyeOl_Load);
             this.grpBoxUyeOl.ResumeLayout(false);
             this.grpBoxUyeOl.PerformLayout();
             this.pnlRenk.ResumeLayout(false);

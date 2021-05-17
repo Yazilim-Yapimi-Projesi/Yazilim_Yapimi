@@ -38,9 +38,7 @@ namespace yazilimYapimi
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnParaOnay = new System.Windows.Forms.Button();
-            this.labe3 = new System.Windows.Forms.Label();
             this.ParaOnayDGV = new System.Windows.Forms.DataGridView();
-            this.label_isimPara = new System.Windows.Forms.Label();
             this.panelUrun = new System.Windows.Forms.Panel();
             this.btn_UrunOnay = new System.Windows.Forms.Button();
             this.UrunOnayDGV = new System.Windows.Forms.DataGridView();
@@ -174,19 +172,7 @@ namespace yazilimYapimi
             this.btnParaOnay.TabIndex = 6;
             this.btnParaOnay.Text = "Onay Ver";
             this.btnParaOnay.UseVisualStyleBackColor = false;
-            // 
-            // labe3
-            // 
-            this.labe3.AutoSize = true;
-            this.labe3.BackColor = System.Drawing.Color.Transparent;
-            this.labe3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labe3.ForeColor = System.Drawing.Color.Black;
-            this.labe3.Location = new System.Drawing.Point(840, 492);
-            this.labe3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labe3.Name = "labe3";
-            this.labe3.Size = new System.Drawing.Size(290, 50);
-            this.labe3.TabIndex = 7;
-            this.labe3.Text = "İsimli Kişinin Talebini\r\n Onaylamak İstiyormusunuz?";
+            this.btnParaOnay.Click += new System.EventHandler(this.btnParaOnay_Click);
             // 
             // ParaOnayDGV
             // 
@@ -201,22 +187,13 @@ namespace yazilimYapimi
             this.ParaOnayDGV.TabIndex = 24;
             this.ParaOnayDGV.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ParaOnayDGV_CellContentClick);
             // 
-            // label_isimPara
-            // 
-            this.label_isimPara.AutoSize = true;
-            this.label_isimPara.Location = new System.Drawing.Point(759, 490);
-            this.label_isimPara.Name = "label_isimPara";
-            this.label_isimPara.Size = new System.Drawing.Size(52, 17);
-            this.label_isimPara.TabIndex = 27;
-            this.label_isimPara.Text = "...........";
-            // 
             // panelUrun
             // 
             this.panelUrun.Controls.Add(this.btn_UrunOnay);
             this.panelUrun.Controls.Add(this.UrunOnayDGV);
-            this.panelUrun.Location = new System.Drawing.Point(351, 33);
+            this.panelUrun.Location = new System.Drawing.Point(351, 27);
             this.panelUrun.Name = "panelUrun";
-            this.panelUrun.Size = new System.Drawing.Size(1195, 694);
+            this.panelUrun.Size = new System.Drawing.Size(1195, 700);
             this.panelUrun.TabIndex = 28;
             // 
             // btn_UrunOnay
@@ -239,12 +216,12 @@ namespace yazilimYapimi
             // 
             this.UrunOnayDGV.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.UrunOnayDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.UrunOnayDGV.Location = new System.Drawing.Point(67, 27);
+            this.UrunOnayDGV.Location = new System.Drawing.Point(15, 10);
             this.UrunOnayDGV.Margin = new System.Windows.Forms.Padding(4);
             this.UrunOnayDGV.Name = "UrunOnayDGV";
             this.UrunOnayDGV.RowHeadersWidth = 51;
             this.UrunOnayDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.UrunOnayDGV.Size = new System.Drawing.Size(1014, 407);
+            this.UrunOnayDGV.Size = new System.Drawing.Size(1066, 424);
             this.UrunOnayDGV.TabIndex = 25;
             this.UrunOnayDGV.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.UrunOnayDGV_CellContentClick);
             // 
@@ -254,9 +231,7 @@ namespace yazilimYapimi
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1546, 727);
             this.Controls.Add(this.panelUrun);
-            this.Controls.Add(this.label_isimPara);
             this.Controls.Add(this.ParaOnayDGV);
-            this.Controls.Add(this.labe3);
             this.Controls.Add(this.btnParaOnay);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -275,7 +250,6 @@ namespace yazilimYapimi
             this.panelUrun.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.UrunOnayDGV)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -290,9 +264,7 @@ namespace yazilimYapimi
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btnParaOnay;
-        private System.Windows.Forms.Label labe3;
         public System.Windows.Forms.DataGridView ParaOnayDGV;
-        private System.Windows.Forms.Label label_isimPara;
         private System.Windows.Forms.Panel panelUrun;
         public System.Windows.Forms.DataGridView UrunOnayDGV;
         private System.Windows.Forms.Button btn_UrunOnay;

@@ -1,2 +1,0 @@
-# Yazilim_Yapimi
-Vize

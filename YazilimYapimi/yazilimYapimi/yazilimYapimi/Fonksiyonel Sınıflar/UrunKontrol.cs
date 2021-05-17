@@ -1,18 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.OleDb;
 
 namespace yazilimYapimi
 {
     class UrunKontrol : IKontrol
     {
-        OleDbConnection baglanti = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=Borsa.accdb");
-        OleDbCommand komut;
-        OleDbDataReader oku;
-        string sqlkodu;
+  
         public bool KontrolEt(string UserID, string ItemName, string ItemAmount)
         {
             return this.UrunuKontrolEt( UserID, ItemName, ItemAmount);
@@ -20,9 +13,14 @@ namespace yazilimYapimi
 
         private bool UrunuKontrolEt(string UserID, string ItemName, string ItemAmount)
         {
+            OleDbConnection baglanti = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=Borsa.accdb");
+            OleDbCommand komut;
+            OleDbDataReader oku;
+            string sqlkodu;
             int ToplamKG = 0;
-            baglanti.Open();
 
+            //  isteğe göre aynı isim ve aynı birim fiyattan olan urunlerin miktarı hesaplanır.
+            baglanti.Open();
             sqlkodu = "select * from UserItems where (UserID=@userid) and (ItemName=@itemname) and (ItemAmount=@itemamount) and (ItemRequest=@itemrequest) and (ItemForSale=@ıtemforsale)";
             komut = new OleDbCommand(sqlkodu, baglanti);
 
@@ -40,6 +38,7 @@ namespace yazilimYapimi
             }
 
           
+            // Toplam miktar 0 değilse toplam miktarda yeni kayıt eklenir 
                 sqlkodu = "delete from UserItems where (UserID=@userid) and (ItemName=@itemname) and (ItemAmount=@itemamount) and (ItemRequest=@itemrequest) and (ItemForSale=@ıtemforsale)";
                 komut = new OleDbCommand(sqlkodu, baglanti);
 

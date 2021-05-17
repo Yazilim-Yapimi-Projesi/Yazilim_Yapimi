@@ -1,28 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Data.OleDb;
 
 namespace yazilimYapimi
 {
     class UrunOnayListele : IListe
     {
-        OleDbConnection baglanti = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=Borsa.accdb");
-        DataTable tablo2 = new DataTable();
 
         public DataTable Listele(string UserID, Boolean ItemRequest, Boolean ItemForSale)
         {
-            return UrunOnayListesiGetir(UserID);
+            return UrunOnayListesiGetir();
         }
 
-        private DataTable UrunOnayListesiGetir(string UserID) 
+        private DataTable UrunOnayListesiGetir()
         {
+            OleDbConnection baglanti = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=Borsa.accdb");
+            DataTable tablo2 = new DataTable();
+
+            // Onay bekleyen ürünler listelenir.
+
             baglanti.Open();
 
             OleDbDataAdapter adp2 = new OleDbDataAdapter("select UserID,ItemID,ItemName,ItemKg,ItemAmount from UserItems where ItemRequest=false and ItemForSale=true", baglanti);

@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.OleDb;
 
@@ -60,15 +53,9 @@ namespace yazilimYapimi
                     if (AlımIslemiYapıldı_mı == false && SaticiID != AlıcıID && Satilik_UrunAdı == IstenenUrun && Satilik_UrunOnayı && Urun_Satilik_mi
                         /* Alım işlemi henüzu ygun değilken; bizim haricimizdeki bir kullanıcıda istediğimiz urun varsa, miktarına bakılır.*/)
                     {
-
-
-
-
                         if (IstenenMıktar <= Satilik_UrunMiktari
                            /* Satılık urunun miktarı istediğimiz kadar veya daha fazlası ise maliyetine bakılır.*/)
                         {
-
-
                             if (IstenenMıktar * Satilik_UrunBirimFiyatı <= Butce
                                /*  Satıcıdadan alacağımız ürünün maliyeti Butcemize eşit veya küçük ise  */ )
                             {
@@ -79,6 +66,7 @@ namespace yazilimYapimi
                                 IEkle ekle = eklemeFabrikası.EklemeNesnesiOlustur("Para");
                                 ekle.Ekle(SaticiID, "", "", "", false, false, ToplamMaliyet.ToString(), true);
 
+                                //Satıcıdaki ürünü kaldır.
                                 sqlkodu = "delete from UserItems where (ItemID=@itemid)";
                                 komut = new OleDbCommand(sqlkodu, baglanti);
 
@@ -87,6 +75,7 @@ namespace yazilimYapimi
 
                                 if (Satilik_UrunMiktari - IstenenMıktar > 0)
                                 {
+                                    //Eğer alım işleminden sonra satıcıda hala ürün kalacaksa satılan ürünü güncel ürünmiktarıyla tekrar ekle
                                     sqlkodu = "insert into UserItems(UserID,ItemName,ItemKg,ItemAmount,ItemRequest,ItemForSale) values (@UserID,@ItemName,@ItemKg,@ItemAmount,@ItemRequest,@ItemForSale)";
                                     komut = new OleDbCommand(sqlkodu, baglanti);
 
@@ -98,16 +87,9 @@ namespace yazilimYapimi
                                     komut.Parameters.AddWithValue("@ItemForSale", true);
                                     komut.ExecuteNonQuery();
                                 }
-
-
-
                                 IstenenMıktar = 0;
                             }
-
-
                             else;  // Para yetmiyorsa geç
-
-
                         }
 
 
@@ -126,7 +108,7 @@ namespace yazilimYapimi
                                 IEkle ekle = eklemeFabrikası.EklemeNesnesiOlustur("Para");
                                 ekle.Ekle(SaticiID, "", "", "", false, false, ToplamMaliyet.ToString(), true);
 
-
+                                //Satıcıdaki ürünü kaldır.
                                 sqlkodu = "delete from UserItems where (UserID=@userid) and (ItemName=@itemname) and (ItemAmount=@itemamount) and (ItemRequest=@itemrequest) and (ItemForSale=@ıtemforsale)";
                                 komut = new OleDbCommand(sqlkodu, baglanti);
 
@@ -137,21 +119,18 @@ namespace yazilimYapimi
                                 komut.Parameters.AddWithValue("@itemforsale", true);
                                 komut.ExecuteNonQuery();
                             }
-
-
                             else; // Para yetmiyorsa geç
-
-
                         }
 
 
 
-
+                        // Eğer istediğimiz kadarını almışsak ve bütçemiz yeterli ise
                         if (IstenenMıktar == 0 && ToplamMaliyet <= Butce)
                         {
                             AlımIslemiYapıldı_mı = true;
                             AlınanMalınBirimFiyatı = Math.Round(Convert.ToDouble(ToplamMaliyet) / Convert.ToDouble(IstenenMıktarbas), 2);
 
+                            // Ürünü alıcıya gönder.
                             EklemeFabrikası eklemeFabrikası = new EklemeFabrikası();
                             IEkle ekle = eklemeFabrikası.EklemeNesnesiOlustur("Urun");
                             ekle.Ekle(AlıcıID, IstenenUrun, IstenenMıktarbas.ToString(), AlınanMalınBirimFiyatı.ToString(), false, false, "", false);
@@ -159,6 +138,7 @@ namespace yazilimYapimi
 
 
 
+                            // Alıcının Parası azaltılır.
 
                             int ToplamPara = 0;
                             OleDbCommand getir = new OleDbCommand("select MoneyAmount from Moneys where MoneyRequest= true and UserID=@userid", baglanti);
@@ -173,22 +153,19 @@ namespace yazilimYapimi
                             komut = new OleDbCommand(sqlkodu, baglanti);
                             komut.Parameters.AddWithValue("@userid", AlıcıID);
                             komut.ExecuteNonQuery();
+                            
+                            // Alıcının hala parası kaldıysa para eklenir
+                            if (ToplamPara - ToplamMaliyet> 0) {
+                                sqlkodu = "insert into Moneys(UserID,MoneyAmount,MoneyRequest) values (@UserID,@MoneyAmount,@MoneyRequest)";
+                                komut = new OleDbCommand(sqlkodu, baglanti);
 
-                            sqlkodu = "insert into Moneys(UserID,MoneyAmount,MoneyRequest) values (@UserID,@MoneyAmount,@MoneyRequest)";
-                            komut = new OleDbCommand(sqlkodu, baglanti);
-
-                            komut.Parameters.AddWithValue("@UserID", AlıcıID);
-                            komut.Parameters.AddWithValue("@MoneyAmount", (ToplamPara - ToplamMaliyet));
-                            komut.Parameters.AddWithValue("@MoneyRequest", true);
-                            komut.ExecuteNonQuery();
-
-
-
-
+                                komut.Parameters.AddWithValue("@UserID", AlıcıID);
+                                komut.Parameters.AddWithValue("@MoneyAmount", (ToplamPara - ToplamMaliyet));
+                                komut.Parameters.AddWithValue("@MoneyRequest", true);
+                                komut.ExecuteNonQuery();
+                            }
                         }
-
                     }
-
                 }
             }
             baglanti.Close();
@@ -219,7 +196,7 @@ namespace yazilimYapimi
             // Sıralanmış satılık urunler sırayla okunur-kontrol edilir-
             // Alım Yapilabilirlik kontrol edilir.
             oku = komut.ExecuteReader();
-            while (oku.Read()) // Sırayla satılık urunler geezilir
+            while (oku.Read()) 
             {
                 string SaticiID = oku[1].ToString();
                 string Satilik_UrunAdı = oku[2].ToString();
@@ -231,7 +208,7 @@ namespace yazilimYapimi
 
                 // Önce isterler Alım yapmaya uygun mu ona bakılır. Butce yetecek mi ve istenen miktar pazarda var mı onlar kontro edilir.
                 if (AlımIslemıGerceklesebilir_mi == false && SaticiID != AlıcıID && Satilik_UrunAdı == IstenenUrun && Satilik_UrunOnayı && Urun_Satilik_mi
-                    /* Alım işlemi henüzu ygun değilken; bizim haricimizdeki bir kullanıcıda istediğimiz urun varsa, miktarına bakılır.*/)
+                    /* Alım işlemi henüzu uygun değilken; bizim haricimizdeki bir kullanıcıda istediğimiz urun varsa, miktarına bakılır.*/)
                 {
 
                     if (IstenenMıktar <= Satilik_UrunMiktari
@@ -286,7 +263,7 @@ namespace yazilimYapimi
             baglanti.Close();
 
             if (!AlımIslemıGerceklesebilir_mi)
-                MessageBox.Show("Sipariş Tamamlanamadı!");
+            MessageBox.Show("Sipariş Tamamlanamadı!");
             return AlımIslemıGerceklesebilir_mi;
         }
 

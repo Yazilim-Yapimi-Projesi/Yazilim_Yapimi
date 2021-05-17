@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace yazilimYapimi
@@ -21,6 +14,7 @@ namespace yazilimYapimi
 
         private void linkUyeKaydı_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            // Uye olma işlemi
             ÜyeOl üye = new ÜyeOl();
             üye.Show();
         }
@@ -41,7 +35,7 @@ namespace yazilimYapimi
             }
             else
             {
-
+                // Kullancı tipine göre giriş yapma işlemi
                 if (rbtnAdmin.Checked == true)
                 {
                     kullanıcı.GirisYap(txtTCLogin.Text, txtSifreLogin.Text, "Admin", this);

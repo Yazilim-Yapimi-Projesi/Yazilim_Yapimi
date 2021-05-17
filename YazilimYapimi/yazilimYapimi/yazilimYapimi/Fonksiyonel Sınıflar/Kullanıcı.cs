@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.OleDb;
+
 
 namespace yazilimYapimi
 {
@@ -35,6 +29,8 @@ namespace yazilimYapimi
 
         public Kullanıcı(string tc)
         {
+            // tc'si gönderilen kullanıcının bilgileri okunur.
+
             baglanti.Open();
             string sqlkodu = "select UserName,UserSurname,User_TC_Number,TelNumber,Address,Email,Password,UserID from Users where User_TC_Number =@tc";
             komut = new OleDbCommand(sqlkodu,baglanti);
@@ -53,7 +49,7 @@ namespace yazilimYapimi
                 UserID = oku[7].ToString();
             }
 
-            komut = new OleDbCommand("select MoneyAmount from Moneys where UserID=@id and MoneyRequest=true", baglanti);
+            komut = new OleDbCommand("select MoneyAmount from Moneys where [UserID]=@id and MoneyRequest=true", baglanti);
             komut.Parameters.AddWithValue("@id", this.UserID);
 
             oku = komut.ExecuteReader();
@@ -69,6 +65,7 @@ namespace yazilimYapimi
  
         public void GirisYap(string tc, string sifre, string KullanıcıTipi, FormGiris girisFormu)
         {
+            // Girilen bilgilere ve kullanıcı tipine göre form açılır.
 
             baglanti.Open();
             string sqlkodu = "select * from Users where User_TC_Number=@tc and Password=@sifre and UserTypeName=@usertypename";
@@ -88,9 +85,9 @@ namespace yazilimYapimi
                 }
                 else
                 {
-                    FormKullanici f3 = new FormKullanici();
-                    f3.tc =this.Tc;
-                    f3.Show();
+                    FormKullanici formKullanici = new FormKullanici();
+                    formKullanici.tc = Tc;
+                    formKullanici.Show();
 
                 }
                 girisFormu.Hide();
@@ -144,14 +141,14 @@ namespace yazilimYapimi
 
         public void UyeOl(string ad, string soyad, string tc, string tel, string adres, string email, string sifre)
         {
+            // Yeni kullanıcı kaydı
+
             baglanti.Open();
-
-              string sqlkodu = "insert into Users([UserTypeName],[UserName],[UserSurname],[User_TC_Number],[TelNumber],[Address],[Email],[Password]) values (@Usertypename,@UserName,@UserSurname,@User_TC_Number,@TelNumber,@Address,@Email,@Password)";
-
-
-            komut = new OleDbCommand(sqlkodu, baglanti);
+            string sqlkodu = "insert into Users([UserTypeName],[UserName],[UserSurname],[User_TC_Number],[TelNumber],[Address],[Email],[Password]) values" +
+                             " (@Usertypename,@UserName,@UserSurname,@User_TC_Number,@TelNumber,@Address,@Email,@Password)";
 
 
+                   komut = new OleDbCommand(sqlkodu, baglanti);
                    komut.Parameters.AddWithValue("@Usertypename", "Kullanıcı");
                    komut.Parameters.AddWithValue("@UserName", ad);
                    komut.Parameters.AddWithValue("@UserSurname", soyad);
@@ -160,10 +157,10 @@ namespace yazilimYapimi
                    komut.Parameters.AddWithValue("@Address", adres);
                    komut.Parameters.AddWithValue("@Email", email);
                    komut.Parameters.AddWithValue("@Password", Convert.ToInt32(sifre));
-            if ( komut.ExecuteNonQuery()>0)
-            {
-                MessageBox.Show("Uye Kaydı Başarılı");
-            }
+                    if ( komut.ExecuteNonQuery()>0)
+                    {
+                        MessageBox.Show("Uye Kaydı Başarılı");
+                    }
 
 
             baglanti.Close();
@@ -173,6 +170,8 @@ namespace yazilimYapimi
 
         public void UyelikBilgileriGuncelle(string ad, string soyad, string tc, string tel, string adres, string email, string sifre, string userID)
         {
+
+            // Uyelik bilgilerini güncelleme
             baglanti.Open();
             string sqlkodu = "update Users set [UserName]=@username,[UserSurname]=@usersurname,[User_TC_Number]=@usertcnumber,[TelNumber]=@telnumber,[Address]=@address,[Email]=@email,[Password]=@password where UserID=@userid";
             komut = new OleDbCommand(sqlkodu, baglanti);

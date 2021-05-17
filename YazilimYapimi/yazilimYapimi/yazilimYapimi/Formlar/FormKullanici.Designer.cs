@@ -29,6 +29,7 @@ namespace yazilimYapimi
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel2 = new System.Windows.Forms.Panel();
             this.labelTarih = new System.Windows.Forms.Label();
             this.labelSaat = new System.Windows.Forms.Label();
@@ -97,6 +98,7 @@ namespace yazilimYapimi
             this.UrunMiktariSell = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.satisEmriOlusturBTN = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
@@ -130,7 +132,7 @@ namespace yazilimYapimi
             this.panel2.Location = new System.Drawing.Point(305, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1333, 37);
+            this.panel2.Size = new System.Drawing.Size(1240, 37);
             this.panel2.TabIndex = 9;
             // 
             // labelTarih
@@ -335,10 +337,10 @@ namespace yazilimYapimi
             this.ParaYatirPanel.Controls.Add(this.groupBox2);
             this.ParaYatirPanel.Controls.Add(this.pictureBox12);
             this.ParaYatirPanel.Controls.Add(this.btnParaTalebi);
-            this.ParaYatirPanel.Location = new System.Drawing.Point(305, 37);
+            this.ParaYatirPanel.Location = new System.Drawing.Point(305, 33);
             this.ParaYatirPanel.Margin = new System.Windows.Forms.Padding(4);
             this.ParaYatirPanel.Name = "ParaYatirPanel";
-            this.ParaYatirPanel.Size = new System.Drawing.Size(1333, 726);
+            this.ParaYatirPanel.Size = new System.Drawing.Size(1333, 730);
             this.ParaYatirPanel.TabIndex = 23;
             this.ParaYatirPanel.Visible = false;
             // 
@@ -439,10 +441,10 @@ namespace yazilimYapimi
             this.profilimPanel.Controls.Add(this.pictureBox9);
             this.profilimPanel.Controls.Add(this.btnBilgilerimiGuncelle);
             this.profilimPanel.Controls.Add(this.label9);
-            this.profilimPanel.Location = new System.Drawing.Point(305, 37);
+            this.profilimPanel.Location = new System.Drawing.Point(305, 33);
             this.profilimPanel.Margin = new System.Windows.Forms.Padding(4);
             this.profilimPanel.Name = "profilimPanel";
-            this.profilimPanel.Size = new System.Drawing.Size(1333, 699);
+            this.profilimPanel.Size = new System.Drawing.Size(1333, 703);
             this.profilimPanel.TabIndex = 20;
             this.profilimPanel.Visible = false;
             // 
@@ -649,6 +651,7 @@ namespace yazilimYapimi
             // 
             // ProfilDGV
             // 
+            this.ProfilDGV.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.ProfilDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ProfilDGV.Location = new System.Drawing.Point(172, 13);
             this.ProfilDGV.Margin = new System.Windows.Forms.Padding(4);
@@ -706,10 +709,10 @@ namespace yazilimYapimi
             this.AlımPanel.Controls.Add(this.txtAlımMiktarı);
             this.AlımPanel.Controls.Add(this.label4);
             this.AlımPanel.Controls.Add(this.Pazar_DGV);
-            this.AlımPanel.Location = new System.Drawing.Point(305, 35);
+            this.AlımPanel.Location = new System.Drawing.Point(305, 33);
             this.AlımPanel.Margin = new System.Windows.Forms.Padding(4);
             this.AlımPanel.Name = "AlımPanel";
-            this.AlımPanel.Size = new System.Drawing.Size(1333, 781);
+            this.AlımPanel.Size = new System.Drawing.Size(1333, 783);
             this.AlımPanel.TabIndex = 10;
             this.AlımPanel.Visible = false;
             // 
@@ -745,8 +748,9 @@ namespace yazilimYapimi
             this.btnAlim.Name = "btnAlim";
             this.btnAlim.Size = new System.Drawing.Size(391, 85);
             this.btnAlim.TabIndex = 13;
-            this.btnAlim.Text = "Alım Emri Ver";
+            this.btnAlim.Text = "Alım Talebi Oluştur";
             this.btnAlim.UseVisualStyleBackColor = false;
+            this.btnAlim.Click += new System.EventHandler(this.btnAlim_Click_1);
             // 
             // txtAlımMiktarı
             // 
@@ -770,6 +774,7 @@ namespace yazilimYapimi
             // 
             // Pazar_DGV
             // 
+            this.Pazar_DGV.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.Pazar_DGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Pazar_DGV.Location = new System.Drawing.Point(171, 4);
             this.Pazar_DGV.Margin = new System.Windows.Forms.Padding(4);
@@ -790,10 +795,10 @@ namespace yazilimYapimi
             this.ürünPanel.Controls.Add(this.StokDGV);
             this.ürünPanel.Controls.Add(this.groupBox1);
             this.ürünPanel.Controls.Add(this.satisEmriOlusturBTN);
-            this.ürünPanel.Location = new System.Drawing.Point(305, 35);
+            this.ürünPanel.Location = new System.Drawing.Point(305, 33);
             this.ürünPanel.Margin = new System.Windows.Forms.Padding(4);
             this.ürünPanel.Name = "ürünPanel";
-            this.ürünPanel.Size = new System.Drawing.Size(1333, 749);
+            this.ürünPanel.Size = new System.Drawing.Size(1333, 751);
             this.ürünPanel.TabIndex = 19;
             this.ürünPanel.Visible = false;
             // 
@@ -835,32 +840,35 @@ namespace yazilimYapimi
             // 
             // OnayBekleyenUrunlerimDGV
             // 
+            this.OnayBekleyenUrunlerimDGV.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.OnayBekleyenUrunlerimDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.OnayBekleyenUrunlerimDGV.Location = new System.Drawing.Point(7, 169);
             this.OnayBekleyenUrunlerimDGV.Margin = new System.Windows.Forms.Padding(4);
             this.OnayBekleyenUrunlerimDGV.Name = "OnayBekleyenUrunlerimDGV";
             this.OnayBekleyenUrunlerimDGV.RowHeadersWidth = 51;
-            this.OnayBekleyenUrunlerimDGV.Size = new System.Drawing.Size(638, 124);
+            this.OnayBekleyenUrunlerimDGV.Size = new System.Drawing.Size(618, 124);
             this.OnayBekleyenUrunlerimDGV.TabIndex = 25;
             // 
             // SatılıkUrunlerimDGV
             // 
+            this.SatılıkUrunlerimDGV.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.SatılıkUrunlerimDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.SatılıkUrunlerimDGV.Location = new System.Drawing.Point(7, 41);
             this.SatılıkUrunlerimDGV.Margin = new System.Windows.Forms.Padding(4);
             this.SatılıkUrunlerimDGV.Name = "SatılıkUrunlerimDGV";
             this.SatılıkUrunlerimDGV.RowHeadersWidth = 51;
-            this.SatılıkUrunlerimDGV.Size = new System.Drawing.Size(638, 124);
+            this.SatılıkUrunlerimDGV.Size = new System.Drawing.Size(618, 124);
             this.SatılıkUrunlerimDGV.TabIndex = 24;
             // 
             // StokDGV
             // 
+            this.StokDGV.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.StokDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.StokDGV.Location = new System.Drawing.Point(653, 41);
+            this.StokDGV.Location = new System.Drawing.Point(645, 41);
             this.StokDGV.Margin = new System.Windows.Forms.Padding(4);
             this.StokDGV.Name = "StokDGV";
             this.StokDGV.RowHeadersWidth = 51;
-            this.StokDGV.Size = new System.Drawing.Size(626, 252);
+            this.StokDGV.Size = new System.Drawing.Size(578, 252);
             this.StokDGV.TabIndex = 23;
             this.StokDGV.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.StokDGV_CellContentClick);
             // 
@@ -886,7 +894,9 @@ namespace yazilimYapimi
             this.UrunTipiSell.Items.AddRange(new object[] {
             "Buğday",
             "Mısır",
-            "Pancar "});
+            "Pancar",
+            "Fıstık",
+            "Yulaf"});
             this.UrunTipiSell.Location = new System.Drawing.Point(549, 60);
             this.UrunTipiSell.Margin = new System.Windows.Forms.Padding(4);
             this.UrunTipiSell.Name = "UrunTipiSell";
@@ -957,15 +967,20 @@ namespace yazilimYapimi
             this.satisEmriOlusturBTN.Name = "satisEmriOlusturBTN";
             this.satisEmriOlusturBTN.Size = new System.Drawing.Size(391, 85);
             this.satisEmriOlusturBTN.TabIndex = 13;
-            this.satisEmriOlusturBTN.Text = "Satış Emri Oluştur";
+            this.satisEmriOlusturBTN.Text = "Satış Talebi Oluştur";
             this.satisEmriOlusturBTN.UseVisualStyleBackColor = false;
             this.satisEmriOlusturBTN.Click += new System.EventHandler(this.satisEmriOlusturBTN_Click);
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // FormKullanici
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1638, 736);
+            this.ClientSize = new System.Drawing.Size(1545, 736);
             this.Controls.Add(this.profilimPanel);
             this.Controls.Add(this.ParaYatirPanel);
             this.Controls.Add(this.ürünPanel);
@@ -1079,5 +1094,6 @@ namespace yazilimYapimi
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label labelTarih;
+        private System.Windows.Forms.Timer timer1;
     }
 }

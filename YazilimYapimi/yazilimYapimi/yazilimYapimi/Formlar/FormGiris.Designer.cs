@@ -72,7 +72,7 @@ namespace yazilimYapimi
             // 
             // txtSifreLogin
             // 
-            this.txtSifreLogin.Location = new System.Drawing.Point(92, 158);
+            this.txtSifreLogin.Location = new System.Drawing.Point(92, 233);
             this.txtSifreLogin.Margin = new System.Windows.Forms.Padding(4);
             this.txtSifreLogin.Multiline = true;
             this.txtSifreLogin.Name = "txtSifreLogin";
@@ -81,7 +81,7 @@ namespace yazilimYapimi
             // 
             // txtTCLogin
             // 
-            this.txtTCLogin.Location = new System.Drawing.Point(92, 233);
+            this.txtTCLogin.Location = new System.Drawing.Point(92, 158);
             this.txtTCLogin.Margin = new System.Windows.Forms.Padding(4);
             this.txtTCLogin.Multiline = true;
             this.txtTCLogin.Name = "txtTCLogin";

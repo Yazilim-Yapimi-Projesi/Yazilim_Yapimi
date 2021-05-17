@@ -45,9 +45,5 @@ namespace yazilimYapimi
             txtÜyeOlSifreTekrar.Clear();
         }
 
-        private void ÜyeOl_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

@@ -1,13 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.OleDb;
 
 namespace yazilimYapimi
 {
@@ -31,16 +23,18 @@ namespace yazilimYapimi
         #region Listelemeler
         private void Paraİsteklistele()
         {
+            //Onay bekleyen para isteklerini listele.
             ListelemeFabrikası listelemeFabrikası = new ListelemeFabrikası();
             IListe liste = listelemeFabrikası.ListeOlustur("ParaOnayListesi");
-            ParaOnayDGV.DataSource = liste.Listele(UserID,false,false);
+            ParaOnayDGV.DataSource = liste.Listele("",false,false);
 
         }
         private void UrunistekListele()
         {
+            //Onay bekleyen urun isteklerini listele.
             ListelemeFabrikası listelemeFabrikası = new ListelemeFabrikası();
             IListe liste = listelemeFabrikası.ListeOlustur("UrunOnayListesi");
-            UrunOnayDGV.DataSource = liste.Listele(this.UserID, false, false);
+            UrunOnayDGV.DataSource = liste.Listele("", false, false);
 
         }
         #endregion
@@ -50,7 +44,6 @@ namespace yazilimYapimi
         {
             UserID = ParaOnayDGV.CurrentRow.Cells[0].Value.ToString();
             MoneyID = ParaOnayDGV.CurrentRow.Cells[1].Value.ToString();
-            label_isimPara.Text = ParaOnayDGV.CurrentRow.Cells[1].Value.ToString();
         }
         private void UrunOnayDGV_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -58,7 +51,6 @@ namespace yazilimYapimi
             ItemID = UrunOnayDGV.CurrentRow.Cells[1].Value.ToString();
             ItemName = UrunOnayDGV.CurrentRow.Cells[2].Value.ToString();
             ItemAmount = UrunOnayDGV.CurrentRow.Cells[4].Value.ToString();
-            MessageBox.Show("userıd "+UserID+" ıtemıd "+ItemID+" ıtemname "+ItemName+" ıtemamount "+ ItemAmount+"");
         }
 
         #endregion
@@ -86,16 +78,17 @@ namespace yazilimYapimi
 
             UrunistekListele();
         }
-        private void btn_ParaOnay_Click(object sender, EventArgs e)
+        private void btnParaOnay_Click(object sender, EventArgs e)
         {
+
             OnayFabrikası onayFabrikası = new OnayFabrikası();
             IOnay onay = onayFabrikası.OnaylamaNesnesiOlustur("ParaOnay");
-            onay.Onayla(UserID, ItemName, ItemAmount, ItemID, MoneyID);
+            onay.Onayla(UserID, "", "", "", MoneyID);
             Paraİsteklistele();
         }
 
-
         #endregion
+
 
     }
 }
