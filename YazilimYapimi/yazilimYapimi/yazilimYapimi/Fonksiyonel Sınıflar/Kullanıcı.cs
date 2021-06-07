@@ -18,7 +18,7 @@ namespace yazilimYapimi
         private string Adress;
         private string Email;
         private string Sifre;
-        private string UserID;
+        private string UserID="";
         private string Para;
 
 
@@ -81,6 +81,7 @@ namespace yazilimYapimi
                 if (oku[1].ToString() == "Admin")
                 {
                     FormAdmin frmAdmin = new FormAdmin();
+                    frmAdmin.MuhasebePara = ParaGetir();
                     frmAdmin.Show();
                 }
                 else
@@ -98,6 +99,7 @@ namespace yazilimYapimi
             }
 
         }
+
 
         #region Kullanıcı Bilgileri Çağırma Fonksiyonları
         public string AdGetir()

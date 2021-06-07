@@ -8,6 +8,6 @@ namespace yazilimYapimi
 {
     interface IEkle
     {
-        bool Ekle(string UserID, string UrunTipi, string UrunMiktari, string UrunFiyat, Boolean UrunIstek, Boolean Satısta_mı, string ParaMiktarı, Boolean ParaIstek);
+        bool Ekle(string UserID, string UrunTipi, string UrunMiktari, string UrunFiyat, Boolean UrunIstek, Boolean Satısta_mı, string ParaMiktarı, Boolean ParaIstek, string DövizTipi);
     }
 }

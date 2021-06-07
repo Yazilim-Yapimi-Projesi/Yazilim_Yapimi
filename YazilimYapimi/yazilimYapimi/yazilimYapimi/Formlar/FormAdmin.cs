@@ -14,8 +14,10 @@ namespace yazilimYapimi
         string ItemID;
         string ItemName;
         string ItemAmount;
+        public string MuhasebePara;
         private void FormAdmin_Load(object sender, EventArgs e)
         {
+            labelMuhasaebe.Text = MuhasebePara;
             Paraİsteklistele();
             UrunistekListele();
         }

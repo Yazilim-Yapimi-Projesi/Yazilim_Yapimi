@@ -6,12 +6,12 @@ namespace yazilimYapimi
 {
     class UrunEkle : IEkle
     {
-        public bool Ekle(string UserID, string UrunTipi, string UrunMiktari, string UrunFiyat, Boolean UrunIstek,Boolean Satısta_mı ,string ParaMiktarı, Boolean ParaIstek)
+        public bool Ekle(string UserID, string UrunTipi, string UrunMiktari, string UrunFiyat, Boolean UrunIstek,Boolean Satısta_mı ,string ParaMiktarı, Boolean ParaIstek ,string DövizTipi)
         { 
            
             return this.Urun_Ekle(UserID,  UrunTipi,  UrunMiktari, UrunFiyat,  UrunIstek, Satısta_mı);
         }
-        private bool Urun_Ekle(string UserID, string UrunTipi, string UrunMiktari, string UrunFiyat, Boolean UrunIstek, Boolean Satısta_mı )
+        private bool Urun_Ekle(string UserID, string UrunTipi, string UrunMiktari, string UrunFiyat, Boolean UrunIstek, Boolean Satısta_mı)
         {
             OleDbConnection baglanti = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=Borsa.accdb");
             OleDbCommand ekle;

@@ -18,7 +18,7 @@ namespace yazilimYapimi
 
             // Admin sayfasında görüntülemek için onay bekleyen para istekleri listelenir.
             baglanti.Open();
-            OleDbDataAdapter adp = new OleDbDataAdapter("select UserID,MoneyID,MoneyAmount from Moneys where MoneyRequest=false", baglanti);
+            OleDbDataAdapter adp = new OleDbDataAdapter("select UserID,MoneyID,MoneyAmount,Currency from Moneys where MoneyRequest=false", baglanti);
             adp.Fill(tablo1);
             baglanti.Close();
             return tablo1;

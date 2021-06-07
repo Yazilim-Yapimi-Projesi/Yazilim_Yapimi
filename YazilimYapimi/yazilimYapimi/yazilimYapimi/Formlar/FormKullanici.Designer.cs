@@ -47,6 +47,8 @@ namespace yazilimYapimi
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.ParaYatirPanel = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cmbxDövizTipi = new System.Windows.Forms.ComboBox();
+            this.label22 = new System.Windows.Forms.Label();
             this.pictureBox13 = new System.Windows.Forms.PictureBox();
             this.label8 = new System.Windows.Forms.Label();
             this.txtPara = new System.Windows.Forms.TextBox();
@@ -77,9 +79,11 @@ namespace yazilimYapimi
             this.btnBilgilerimiGuncelle = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.AlımPanel = new System.Windows.Forms.Panel();
-            this.txtUrunTipi = new System.Windows.Forms.TextBox();
+            this.btnManuelAlim = new System.Windows.Forms.Button();
+            this.txtAlımBirimFiyat = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.btnAlim = new System.Windows.Forms.Button();
+            this.btnOtoAlim = new System.Windows.Forms.Button();
             this.txtAlımMiktarı = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.Pazar_DGV = new System.Windows.Forms.DataGridView();
@@ -99,6 +103,7 @@ namespace yazilimYapimi
             this.label7 = new System.Windows.Forms.Label();
             this.satisEmriOlusturBTN = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.cmbxAlinacakUrun = new System.Windows.Forms.ComboBox();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
@@ -346,6 +351,8 @@ namespace yazilimYapimi
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.cmbxDövizTipi);
+            this.groupBox2.Controls.Add(this.label22);
             this.groupBox2.Controls.Add(this.pictureBox13);
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.txtPara);
@@ -353,9 +360,34 @@ namespace yazilimYapimi
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(839, 90);
+            this.groupBox2.Size = new System.Drawing.Size(864, 136);
             this.groupBox2.TabIndex = 25;
             this.groupBox2.TabStop = false;
+            // 
+            // cmbxDövizTipi
+            // 
+            this.cmbxDövizTipi.FormattingEnabled = true;
+            this.cmbxDövizTipi.Items.AddRange(new object[] {
+            "TRY",
+            "EUR",
+            "USD",
+            "GBP"});
+            this.cmbxDövizTipi.Location = new System.Drawing.Point(601, 75);
+            this.cmbxDövizTipi.Name = "cmbxDövizTipi";
+            this.cmbxDövizTipi.Size = new System.Drawing.Size(92, 24);
+            this.cmbxDövizTipi.TabIndex = 18;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.label22.ForeColor = System.Drawing.Color.Black;
+            this.label22.Location = new System.Drawing.Point(77, 74);
+            this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(498, 25);
+            this.label22.TabIndex = 17;
+            this.label22.Text = "Yatırmak İstediğiniz Paranın Döviz Türünü Seçiniz:";
             // 
             // pictureBox13
             // 
@@ -703,9 +735,12 @@ namespace yazilimYapimi
             // AlımPanel
             // 
             this.AlımPanel.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.AlımPanel.Controls.Add(this.txtUrunTipi);
+            this.AlımPanel.Controls.Add(this.cmbxAlinacakUrun);
+            this.AlımPanel.Controls.Add(this.btnManuelAlim);
+            this.AlımPanel.Controls.Add(this.txtAlımBirimFiyat);
+            this.AlımPanel.Controls.Add(this.label23);
             this.AlımPanel.Controls.Add(this.label3);
-            this.AlımPanel.Controls.Add(this.btnAlim);
+            this.AlımPanel.Controls.Add(this.btnOtoAlim);
             this.AlımPanel.Controls.Add(this.txtAlımMiktarı);
             this.AlımPanel.Controls.Add(this.label4);
             this.AlımPanel.Controls.Add(this.Pazar_DGV);
@@ -716,13 +751,42 @@ namespace yazilimYapimi
             this.AlımPanel.TabIndex = 10;
             this.AlımPanel.Visible = false;
             // 
-            // txtUrunTipi
+            // btnManuelAlim
             // 
-            this.txtUrunTipi.Location = new System.Drawing.Point(479, 397);
-            this.txtUrunTipi.Margin = new System.Windows.Forms.Padding(4);
-            this.txtUrunTipi.Name = "txtUrunTipi";
-            this.txtUrunTipi.Size = new System.Drawing.Size(208, 22);
-            this.txtUrunTipi.TabIndex = 18;
+            this.btnManuelAlim.AccessibleDescription = "";
+            this.btnManuelAlim.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.btnManuelAlim.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.btnManuelAlim.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnManuelAlim.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.btnManuelAlim.ForeColor = System.Drawing.Color.Transparent;
+            this.btnManuelAlim.Location = new System.Drawing.Point(790, 512);
+            this.btnManuelAlim.Margin = new System.Windows.Forms.Padding(4);
+            this.btnManuelAlim.Name = "btnManuelAlim";
+            this.btnManuelAlim.Size = new System.Drawing.Size(391, 85);
+            this.btnManuelAlim.TabIndex = 21;
+            this.btnManuelAlim.Text = "Manuel Alım Talebi Oluştur";
+            this.btnManuelAlim.UseVisualStyleBackColor = false;
+            this.btnManuelAlim.Click += new System.EventHandler(this.btnManuelAlim_Click);
+            // 
+            // txtAlımBirimFiyat
+            // 
+            this.txtAlımBirimFiyat.Location = new System.Drawing.Point(484, 575);
+            this.txtAlımBirimFiyat.Margin = new System.Windows.Forms.Padding(4);
+            this.txtAlımBirimFiyat.Name = "txtAlımBirimFiyat";
+            this.txtAlımBirimFiyat.Size = new System.Drawing.Size(208, 22);
+            this.txtAlımBirimFiyat.TabIndex = 20;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.label23.ForeColor = System.Drawing.Color.Black;
+            this.label23.Location = new System.Drawing.Point(35, 547);
+            this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(354, 50);
+            this.label23.TabIndex = 19;
+            this.label23.Text = "İstediğiniz Ürünü Kaç Birim Fiyattan\r\nAlmak İstediğinizi Giriniz :";
             // 
             // label3
             // 
@@ -736,25 +800,26 @@ namespace yazilimYapimi
             this.label3.TabIndex = 17;
             this.label3.Text = "Almak İstediğiniz Ürünü Giriniz :";
             // 
-            // btnAlim
+            // btnOtoAlim
             // 
-            this.btnAlim.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.btnAlim.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.btnAlim.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAlim.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.btnAlim.ForeColor = System.Drawing.Color.Transparent;
-            this.btnAlim.Location = new System.Drawing.Point(423, 582);
-            this.btnAlim.Margin = new System.Windows.Forms.Padding(4);
-            this.btnAlim.Name = "btnAlim";
-            this.btnAlim.Size = new System.Drawing.Size(391, 85);
-            this.btnAlim.TabIndex = 13;
-            this.btnAlim.Text = "Alım Talebi Oluştur";
-            this.btnAlim.UseVisualStyleBackColor = false;
-            this.btnAlim.Click += new System.EventHandler(this.btnAlim_Click_1);
+            this.btnOtoAlim.AccessibleDescription = "";
+            this.btnOtoAlim.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.btnOtoAlim.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.btnOtoAlim.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOtoAlim.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.btnOtoAlim.ForeColor = System.Drawing.Color.Transparent;
+            this.btnOtoAlim.Location = new System.Drawing.Point(790, 381);
+            this.btnOtoAlim.Margin = new System.Windows.Forms.Padding(4);
+            this.btnOtoAlim.Name = "btnOtoAlim";
+            this.btnOtoAlim.Size = new System.Drawing.Size(391, 85);
+            this.btnOtoAlim.TabIndex = 13;
+            this.btnOtoAlim.Text = "Otomatik Alım Talebi Oluştur";
+            this.btnOtoAlim.UseVisualStyleBackColor = false;
+            this.btnOtoAlim.Click += new System.EventHandler(this.btnAlim_Click_1);
             // 
             // txtAlımMiktarı
             // 
-            this.txtAlımMiktarı.Location = new System.Drawing.Point(479, 476);
+            this.txtAlımMiktarı.Location = new System.Drawing.Point(486, 475);
             this.txtAlımMiktarı.Margin = new System.Windows.Forms.Padding(4);
             this.txtAlımMiktarı.Name = "txtAlımMiktarı";
             this.txtAlımMiktarı.Size = new System.Drawing.Size(208, 22);
@@ -976,6 +1041,21 @@ namespace yazilimYapimi
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // cmbxAlinacakUrun
+            // 
+            this.cmbxAlinacakUrun.FormattingEnabled = true;
+            this.cmbxAlinacakUrun.Items.AddRange(new object[] {
+            "Buğday",
+            "Mısır",
+            "Pancar",
+            "Fıstık",
+            "Yulaf"});
+            this.cmbxAlinacakUrun.Location = new System.Drawing.Point(486, 393);
+            this.cmbxAlinacakUrun.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbxAlinacakUrun.Name = "cmbxAlinacakUrun";
+            this.cmbxAlinacakUrun.Size = new System.Drawing.Size(208, 24);
+            this.cmbxAlinacakUrun.TabIndex = 22;
+            // 
             // FormKullanici
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1040,7 +1120,7 @@ namespace yazilimYapimi
         private System.Windows.Forms.Button ParaYatirButon;
         private System.Windows.Forms.Panel AlımPanel;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button btnAlim;
+        private System.Windows.Forms.Button btnOtoAlim;
         private System.Windows.Forms.TextBox txtAlımMiktarı;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DataGridView Pazar_DGV;
@@ -1089,11 +1169,16 @@ namespace yazilimYapimi
         public System.Windows.Forms.Label UserIdLabel;
         private System.Windows.Forms.DataGridView OnayBekleyenUrunlerimDGV;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.TextBox txtUrunTipi;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label labelTarih;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.ComboBox cmbxDövizTipi;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.TextBox txtAlımBirimFiyat;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Button btnManuelAlim;
+        private System.Windows.Forms.ComboBox cmbxAlinacakUrun;
     }
 }

@@ -181,7 +181,6 @@ namespace yazilimYapimi
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormGiris";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Load += new System.EventHandler(this.FormGiris_Load);
             this.pnlRenk.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

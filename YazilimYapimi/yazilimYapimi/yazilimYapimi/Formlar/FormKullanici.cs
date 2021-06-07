@@ -23,7 +23,14 @@ namespace yazilimYapimi
             SatılıkUrunlerimiListele();
             OnayBekleyenUrunlerimiListele();
             TarihveZaman();
+
+            ToolTip Aciklama = new ToolTip();
+            Aciklama.IsBalloon = true;
+            Aciklama.SetToolTip(btnOtoAlim, "İstediğiniz ürün sistemdeki en ucuz satışlara göre alınır.");
+            Aciklama.SetToolTip(btnManuelAlim, "İstediğiniz ürün, sistemde sizim istediğiniz birim fiyattan satış olduğunda alınır");
         }
+
+
 
         #region Listeler
         private void StoktakiUrunlerimiistele()
@@ -60,6 +67,8 @@ namespace yazilimYapimi
         }
         #endregion
 
+
+
         #region Profil Bilgilerini Getirme
         private void ProfilBilgileri()
         {
@@ -86,6 +95,8 @@ namespace yazilimYapimi
             TarihveZaman();
         }
         #endregion
+
+
 
         #region Panel Görünürlükleri
         private void PanelGörünürlükleriniAyarla(Boolean AlımPanelOnay, Boolean ürünPanelOnay, Boolean profilimPanelOnay, Boolean ParaYatirPanelOnay)
@@ -120,7 +131,8 @@ namespace yazilimYapimi
         #endregion
 
 
-      
+
+        #region Guncelleme
 
         private void btnBilgilerimiGuncelle_Click(object sender, EventArgs e)
         {
@@ -144,8 +156,11 @@ namespace yazilimYapimi
                 }
             }
         }
+        #endregion
 
 
+
+        #region Stoktaki ürünü satılığa koymak için DGV'ye tıklama
         private void StokDGV_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             DialogResult mesaj = new DialogResult();
@@ -177,36 +192,68 @@ namespace yazilimYapimi
                 baglanti.Close();
             }
         }
-         
+        #endregion
 
+
+
+        #region Para Yatırma
         private void btnParaTalebi_Click(object sender, EventArgs e)
         {
             // Para yatırma işleminde onay için para isteği gönderilir.
             EklemeFabrikası eklemeFabrikası = new EklemeFabrikası();
             IEkle ekle = eklemeFabrikası.EklemeNesnesiOlustur("Para");
-            ekle.Ekle(UserIdLabel.Text, "", "", "", false,false, txtPara.Text, false);
+            ekle.Ekle(UserIdLabel.Text, "", "", "", false,false, txtPara.Text, false, cmbxDövizTipi.Text);
             MessageBox.Show("Para Talebiniz Oluşturulmuştur!");
         }
+        #endregion
 
 
+
+        #region Satılığa Ürün Ekleme
         private void satisEmriOlusturBTN_Click(object sender, EventArgs e)
         {
             // Satıs isteği oluşturma işleminde onay için ürün isteği gönderilir.
             EklemeFabrikası eklemeFabrikası = new EklemeFabrikası();
             IEkle ekle = eklemeFabrikası.EklemeNesnesiOlustur("Urun");
-            ekle.Ekle(UserIdLabel.Text, UrunTipiSell.SelectedItem.ToString(), UrunMiktariSell.Text, FiyatSell.Text, false, true, txtPara.Text, false);
+            ekle.Ekle(UserIdLabel.Text, UrunTipiSell.SelectedItem.ToString(), UrunMiktariSell.Text, FiyatSell.Text, false, true, txtPara.Text, false,"");
             MessageBox.Show("Urun Talebiniz Oluşturulmuştur!");
 
             SatılıkUrunlerimiListele();
             OnayBekleyenUrunlerimiListele();
             StoktakiUrunlerimiistele();
         }
+        #endregion
 
+
+
+        #region Alım Yapma
         private void btnAlim_Click_1(object sender, EventArgs e)
         {
-            new Alım(UserIdLabel.Text, txtUrunTipi.Text, txtAlımMiktarı.Text, labelPara.Text);
+            Alım alım = new Alım();
+            alım.OtoAlımYap(UserIdLabel.Text, cmbxAlinacakUrun.Text, txtAlımMiktarı.Text, labelPara.Text);
             PazardakiDigerUrunleriiistele();
         }
+
+
+        private void btnManuelAlim_Click(object sender, EventArgs e)
+        {
+            Alım alım = new Alım();
+
+            //Yapılabiliyorsa işlemi yap.
+            if (alım.ManuelAlimYap(UserIdLabel.Text, cmbxAlinacakUrun.Text, txtAlımMiktarı.Text, Convert.ToInt32(txtAlımBirimFiyat.Text), labelPara.Text))
+            { }
+            else 
+            { 
+             //Yapılamıyorsa islemi sıraya al.
+
+            }
+            
+            PazardakiDigerUrunleriiistele();
+        }
+        
+        #endregion
+
+
     }
 
 }

@@ -49,9 +49,5 @@ namespace yazilimYapimi
             Temizle();
         }
 
-        private void FormGiris_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

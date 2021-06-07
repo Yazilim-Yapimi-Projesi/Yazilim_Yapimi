@@ -82,10 +82,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Fonksiyonel Sınıflar\Alım.cs" />
+    <Compile Include="Fonksiyonel Sınıflar\Doviz.cs" />
+    <Compile Include="Fonksiyonel Sınıflar\IslemiSirayaAl.cs" />
     <Compile Include="Fonksiyonel Sınıflar\ParaKontrol.cs" />
     <Compile Include="Fonksiyonel Sınıflar\ParaOnayListele.cs" />
     <Compile Include="Fonksiyonel Sınıflar\SatılıkUrunListem.cs" />
     <Compile Include="Fonksiyonel Sınıflar\PazarListele.cs" />
+    <Compile Include="Fonksiyonel Sınıflar\TamamlananAlim.cs" />
     <Compile Include="Fonksiyonel Sınıflar\UrunKontrol.cs" />
     <Compile Include="Fonksiyonel Sınıflar\UrunListem.cs" />
     <Compile Include="Fonksiyonel Sınıflar\UrunOnayListele.cs" />
