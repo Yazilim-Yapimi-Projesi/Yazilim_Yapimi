@@ -83,7 +83,7 @@
   <ItemGroup>
     <Compile Include="Fonksiyonel Sınıflar\Alım.cs" />
     <Compile Include="Fonksiyonel Sınıflar\Doviz.cs" />
-    <Compile Include="Fonksiyonel Sınıflar\IslemiSirayaAl.cs" />
+    <Compile Include="Fonksiyonel Sınıflar\IslemSira.cs" />
     <Compile Include="Fonksiyonel Sınıflar\ParaKontrol.cs" />
     <Compile Include="Fonksiyonel Sınıflar\ParaOnayListele.cs" />
     <Compile Include="Fonksiyonel Sınıflar\SatılıkUrunListem.cs" />

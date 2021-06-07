@@ -40,10 +40,7 @@ namespace yazilimYapimi
 
             baglanti.Close();
 
-
-
-            MessageBox.Show("alıcı ad soyad "+AliciID+" "+AliciAd+" "+AliciSoyad+" Satici ad soyad "+SaticiID+" "+SaticiAd+" "+SaticiSoyad+"");
-            MessageBox.Show("URUN "+UrunAd+" "+UrunMiktar+"KG "+UrunBirimFiyati+"TL "+" tarih "+IslemTarihi);
+            
             //Daha sonra raporda görüntüleyebilmek için veritabanına alım işlemi kayıt edilir.
             baglanti.Open();
             sqlkodu = "insert into CompletedPurchase(BuyerID,BuyerName,BuyerSurname,SellerID,SellerName,SellerSurname,ItemName,ItemAmount,ItemUnitPrice,SellDate) " +
@@ -73,15 +70,3 @@ namespace yazilimYapimi
 
     }
 }
-/*    baglanti.Open();
-            string sqlkodu = "select UserName,UserSurname from Users where UserID=@UserID";
-            komut = new OleDbCommand(sqlkodu, baglanti);
-            komut.Parameters.AddWithValue("@UserID", AliciID);
-
-            oku = komut.ExecuteReader();
-            while (oku.Read())
-            {
-                AliciAd = oku[0].ToString();
-                AliciSoyad = oku[1].ToString();
-            }
-            baglanti.Close();*/

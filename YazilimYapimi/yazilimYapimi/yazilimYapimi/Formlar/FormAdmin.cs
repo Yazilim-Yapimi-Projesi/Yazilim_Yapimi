@@ -17,6 +17,8 @@ namespace yazilimYapimi
         public string MuhasebePara;
         private void FormAdmin_Load(object sender, EventArgs e)
         {
+            Kullanıcı admin = new Kullanıcı("192804001");
+            MuhasebePara = admin.ParaGetir();
             labelMuhasaebe.Text = MuhasebePara;
             Paraİsteklistele();
             UrunistekListele();
@@ -58,16 +60,18 @@ namespace yazilimYapimi
         #endregion
 
         #region Panel gösterme
-        private void btnUrunTalep_Click(object sender, EventArgs e)
-        {
-            panelUrun.Visible = true;
-            UrunistekListele();
 
-        }
-        private void btnParaTalep_Click(object sender, EventArgs e)
+        private void btn_ParaTalep_Click(object sender, EventArgs e)
         {
             panelUrun.Visible = false;
             Paraİsteklistele();
+
+        }
+
+        private void btn_UrunTalep_Click(object sender, EventArgs e)
+        {
+            panelUrun.Visible = true;
+            UrunistekListele();
         }
         #endregion
 
@@ -79,6 +83,13 @@ namespace yazilimYapimi
             onay.Onayla(UserID, ItemName ,ItemAmount ,ItemID, MoneyID);
 
             UrunistekListele();
+
+            //Mevcut Sartlar değiştiği için sistemde sıraya alınmış işlemlerden uygun hale gelen varsa alım yapılır.
+            IslemSira ıslem = new IslemSira();
+            ıslem.SıradakiIslemleriKontrolEt();
+
+
+            labelMuhasaebe.Text = MuhasebePara;
         }
         private void btnParaOnay_Click(object sender, EventArgs e)
         {
@@ -87,10 +98,19 @@ namespace yazilimYapimi
             IOnay onay = onayFabrikası.OnaylamaNesnesiOlustur("ParaOnay");
             onay.Onayla(UserID, "", "", "", MoneyID);
             Paraİsteklistele();
+
+            //Mevcut Sartlar değiştiği için sistemde sıraya alınmış işlemlerden uygun hale gelen varsa alım yapılır.
+            IslemSira ıslem = new IslemSira();
+            ıslem.SıradakiIslemleriKontrolEt();
+
+
+            labelMuhasaebe.Text = MuhasebePara;
         }
+
+
 
         #endregion
 
-
+     
     }
 }

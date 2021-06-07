@@ -291,7 +291,10 @@ namespace yazilimYapimi
             int ToplamMaliyet = 0;
             double AlınanMalınBirimFiyatı = 0;
 
-
+            if (!AlımIslemıGerceklesebilir_mi)
+            {
+                return false;
+            }
 
             baglanti.Open();
             // Alım islemi gerçekleşebilcekse
@@ -422,11 +425,11 @@ namespace yazilimYapimi
                             {
                                // Alıcıya kalan parası gönderilir.
                                 IEkle ekle1 = eklemeFabrikası.EklemeNesnesiOlustur("Para");
-                                ekle1.Ekle(AlıcıID, "", "", "", false, false, (ToplamMaliyet / 100).ToString(), true, "TRY");
+                                ekle1.Ekle(AlıcıID, "", "", "", false, false, (ToplamPara - (ToplamMaliyet * 101 / 100)).ToString(), true, "TRY");
 
                                 //Muhasebe ücreti 1% tahsis edilir ve admine gönderilir.
                                 IEkle ekle2 = eklemeFabrikası.EklemeNesnesiOlustur("Para");
-                                ekle2.Ekle("2", "", "", "", false, false, (ToplamPara - (ToplamMaliyet * 101 / 100)).ToString(), true, "TRY");
+                                ekle2.Ekle("2", "", "", "", false, false, (ToplamMaliyet / 100).ToString(), true, "TRY");
 
                             }
                         }

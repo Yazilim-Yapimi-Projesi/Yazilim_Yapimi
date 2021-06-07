@@ -204,6 +204,7 @@ namespace yazilimYapimi
             IEkle ekle = eklemeFabrikası.EklemeNesnesiOlustur("Para");
             ekle.Ekle(UserIdLabel.Text, "", "", "", false,false, txtPara.Text, false, cmbxDövizTipi.Text);
             MessageBox.Show("Para Talebiniz Oluşturulmuştur!");
+
         }
         #endregion
 
@@ -217,6 +218,7 @@ namespace yazilimYapimi
             IEkle ekle = eklemeFabrikası.EklemeNesnesiOlustur("Urun");
             ekle.Ekle(UserIdLabel.Text, UrunTipiSell.SelectedItem.ToString(), UrunMiktariSell.Text, FiyatSell.Text, false, true, txtPara.Text, false,"");
             MessageBox.Show("Urun Talebiniz Oluşturulmuştur!");
+
 
             SatılıkUrunlerimiListele();
             OnayBekleyenUrunlerimiListele();
@@ -243,9 +245,11 @@ namespace yazilimYapimi
             if (alım.ManuelAlimYap(UserIdLabel.Text, cmbxAlinacakUrun.Text, txtAlımMiktarı.Text, Convert.ToInt32(txtAlımBirimFiyat.Text), labelPara.Text))
             { }
             else 
-            { 
-             //Yapılamıyorsa islemi sıraya al.
-
+            {
+                //Yapılamıyorsa islemi sıraya al.
+                IslemSira ıslem = new IslemSira();
+                ıslem.SırayaAl(UserIdLabel.Text, cmbxAlinacakUrun.Text, txtAlımMiktarı.Text, txtAlımBirimFiyat.Text);
+                MessageBox.Show("Sistemde istediğini şartlarda satılık ürün yok.\n İşleminiz sıraya alınmıştır uygun şartlar oluştuğu zaman alım gerçekleştirilecektir.");
             }
             
             PazardakiDigerUrunleriiistele();
