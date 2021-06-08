@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Data.OleDb;
+using excel = Microsoft.Office.Interop.Excel;
+
 
 namespace yazilimYapimi
 {
@@ -30,6 +32,30 @@ namespace yazilimYapimi
             Aciklama.SetToolTip(btnManuelAlim, "İstediğiniz ürün, sistemde sizim istediğiniz birim fiyattan satış olduğunda alınır");
         }
 
+        #region Alım Yapma
+        private void btnManuelAlim_Click(object sender, EventArgs e)
+        {
+            Alım alım = new Alım();
+
+            //Yapılabiliyorsa işlemi yap.
+            if (alım.ManuelAlimYap(UserIdLabel.Text, cmbxAlinacakUrun.Text, txtAlımMiktarı.Text, Convert.ToInt32(txtAlımBirimFiyat.Text), labelPara.Text))
+            { MessageBox.Show("İstediğiniz şekilde alım islemi gerçekleştirilmiştir.","Alım İşlemi",MessageBoxButtons.OK,MessageBoxIcon.Information); }
+            else
+            {
+                //Yapılamıyorsa islemi sıraya al.
+                IslemSira ıslem = new IslemSira();
+                ıslem.SırayaAl(UserIdLabel.Text, cmbxAlinacakUrun.Text, txtAlımMiktarı.Text, txtAlımBirimFiyat.Text);
+                MessageBox.Show("Sistemde istediğini şartlarda satılık ürün yok.\nİşleminiz sıraya alınmıştır uygun şartlar oluştuğu zaman alım gerçekleştirilecektir.", "Alım İşlemi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void btnOtoAlim_Click(object sender, EventArgs e)
+        {
+            Alım alım = new Alım();
+            alım.OtoAlımYap(UserIdLabel.Text, cmbxAlinacakUrun.Text, txtAlımMiktarı.Text, labelPara.Text);
+            PazardakiDigerUrunleriiistele();
+        }
+        #endregion
 
 
         #region Listeler
@@ -65,6 +91,27 @@ namespace yazilimYapimi
             IListe liste = listelemeFabrikası.ListeOlustur("PazardakiUrunlerim");
             OnayBekleyenUrunlerimDGV.DataSource = liste.Listele(UserIdLabel.Text, false, true);
         }
+        void RaporListele()
+        {
+            ListelemeFabrikası listelemeFabrikası = new ListelemeFabrikası();       //ListelemeFabrikası classı için nesne oluşturuldu
+            IRapor liste = listelemeFabrikası.RaporListeOlustur("RaporListele");    //oluşturulan nesne ile Method ismine göre işlem yapıyor
+
+            if (RaporUrunTipi.Text == "Hepsi")
+            {
+                raporDGV.DataSource = liste.Listele(UserIdLabel.Text, RaporUrunAd.Text, KucukTarihDTP.Text, BuyukTarihDTP.Text, RaporUrunTipi.Text);
+            }
+            else if (RaporUrunTipi.Text == "Sattığım Ürünler")
+            {
+                //Interface nesnesine göre istenilen bilgiler yollanıyor
+                raporDGV.DataSource = liste.Listele(UserIdLabel.Text, RaporUrunAd.Text, KucukTarihDTP.Text, BuyukTarihDTP.Text, RaporUrunTipi.Text);
+            }
+            else
+            {
+                raporDGV.DataSource = liste.Listele(UserIdLabel.Text, RaporUrunAd.Text, KucukTarihDTP.Text, BuyukTarihDTP.Text, RaporUrunTipi.Text);
+            }
+            this.raporDGV.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;  //dataGridView'ın boyutlarına göre tabloların boyutlarını ayarlama
+
+        }
         #endregion
 
 
@@ -99,34 +146,41 @@ namespace yazilimYapimi
 
 
         #region Panel Görünürlükleri
-        private void PanelGörünürlükleriniAyarla(Boolean AlımPanelOnay, Boolean ürünPanelOnay, Boolean profilimPanelOnay, Boolean ParaYatirPanelOnay)
+        private void PanelGörünürlükleriniAyarla(Boolean AlımPanelOnay, Boolean ürünPanelOnay, Boolean profilimPanelOnay, Boolean ParaYatirPanelOnay, Boolean RaporPanelOnay)
+
         {
             AlımPanel.Visible = AlımPanelOnay;
             ürünPanel.Visible = ürünPanelOnay;
             profilimPanel.Visible = profilimPanelOnay;
             ParaYatirPanel.Visible = ParaYatirPanelOnay;
+            raporPanel.Visible = RaporPanelOnay;
         }
 
         private void alimYapButon_Click(object sender, EventArgs e)
         {
             PazardakiDigerUrunleriiistele();
-            PanelGörünürlükleriniAyarla(true, false, false, false);
+            PanelGörünürlükleriniAyarla(true, false, false, false, false);
         }
         private void ÜrünSatButon_Click(object sender, EventArgs e)
         {
             StoktakiUrunlerimiistele();
             OnayBekleyenUrunlerimiListele();
-            PanelGörünürlükleriniAyarla( false, true, false, false);
+            PanelGörünürlükleriniAyarla( false, true, false, false, false);
         }
         private void ProfilimButon_Click(object sender, EventArgs e)
         {
             StoktakiUrunlerimiistele();
-            PanelGörünürlükleriniAyarla(false, false, true, false);
+            PanelGörünürlükleriniAyarla(false, false, true, false, false);
             ProfilBilgileri();
         }
         private void ParaYatirButon_Click(object sender, EventArgs e)
         {
-            PanelGörünürlükleriniAyarla(false, false, false, true);
+            PanelGörünürlükleriniAyarla(false, false, false, true, false);
+        }
+        private void RaporButon_Click(object sender, EventArgs e)
+        {
+            PanelGörünürlükleriniAyarla(false, false, false, false, true);
+            RaporListele();
         }
         #endregion
 
@@ -139,7 +193,7 @@ namespace yazilimYapimi
             if (adProfil.Text == "" || soyadProfil.Text == "" || tcProfil.Text == "" || telefonProfil.Text == "" ||
                 adresProfil.Text == "" || emailProfil.Text == "" || sifreProfil.Text == "" || UserIdLabel.Text == "")
             {
-                MessageBox.Show("Kutuları Boş bırakmayınız");
+                MessageBox.Show("Kutuları Boş bırakmayınız","Hata",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
             else
             {
@@ -203,7 +257,7 @@ namespace yazilimYapimi
             EklemeFabrikası eklemeFabrikası = new EklemeFabrikası();
             IEkle ekle = eklemeFabrikası.EklemeNesnesiOlustur("Para");
             ekle.Ekle(UserIdLabel.Text, "", "", "", false,false, txtPara.Text, false, cmbxDövizTipi.Text);
-            MessageBox.Show("Para Talebiniz Oluşturulmuştur!");
+            MessageBox.Show("Para Talebiniz Oluşturulmuştur!", "Para Talebi", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }
         #endregion
@@ -217,7 +271,7 @@ namespace yazilimYapimi
             EklemeFabrikası eklemeFabrikası = new EklemeFabrikası();
             IEkle ekle = eklemeFabrikası.EklemeNesnesiOlustur("Urun");
             ekle.Ekle(UserIdLabel.Text, UrunTipiSell.SelectedItem.ToString(), UrunMiktariSell.Text, FiyatSell.Text, false, true, txtPara.Text, false,"");
-            MessageBox.Show("Urun Talebiniz Oluşturulmuştur!");
+            MessageBox.Show("Urun Talebiniz Oluşturulmuştur!", "Ürün Talebi", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
 
             SatılıkUrunlerimiListele();
@@ -228,36 +282,53 @@ namespace yazilimYapimi
 
 
 
-        #region Alım Yapma
-        private void btnAlim_Click_1(object sender, EventArgs e)
-        {
-            Alım alım = new Alım();
-            alım.OtoAlımYap(UserIdLabel.Text, cmbxAlinacakUrun.Text, txtAlımMiktarı.Text, labelPara.Text);
-            PazardakiDigerUrunleriiistele();
-        }
-
-
-        private void btnManuelAlim_Click(object sender, EventArgs e)
-        {
-            Alım alım = new Alım();
-
-            //Yapılabiliyorsa işlemi yap.
-            if (alım.ManuelAlimYap(UserIdLabel.Text, cmbxAlinacakUrun.Text, txtAlımMiktarı.Text, Convert.ToInt32(txtAlımBirimFiyat.Text), labelPara.Text))
-            { MessageBox.Show("İstediğiniz şekilde alım islemi gerçekleştirilmiştir."); }
-            else 
-            {
-                //Yapılamıyorsa islemi sıraya al.
-                IslemSira ıslem = new IslemSira();
-                ıslem.SırayaAl(UserIdLabel.Text, cmbxAlinacakUrun.Text, txtAlımMiktarı.Text, txtAlımBirimFiyat.Text);
-                MessageBox.Show("Sistemde istediğini şartlarda satılık ürün yok.\nİşleminiz sıraya alınmıştır uygun şartlar oluştuğu zaman alım gerçekleştirilecektir.");
-            }
-            
-            PazardakiDigerUrunleriiistele();
-        }
         
+        #region Rapor Islemleri
+        private void ExcelAktarBTN_Click(object sender, EventArgs e)
+        {
+            excel.Application excelUygulamasi = new excel.Application();       //Excel uygulaması için yeni bir nesne oluşturuluyor.
+            excelUygulamasi.Visible = true;                                  //Excel'in gözükmesini sağlar.  
+            excel.Workbook kitaplık = excelUygulamasi.Workbooks.Add(System.Reflection.Missing.Value);
+            excel.Worksheet sayfa = (excel.Worksheet)kitaplık.Sheets[1];    //1. sayfadan başlaması sağlandı.
+            for (int i = 0; i < raporDGV.Columns.Count; i++)                // sütun sayısı kadar döngü döndürülüyor.
+            {
+                excel.Range range = (excel.Range)sayfa.Cells[1, i + 1];        //tablodaki kolonların başlıkları geçirildi.
+                range.Value2 = raporDGV.Columns[i].HeaderText;
+            }
+            for (int i = 0; i < raporDGV.Columns.Count; i++)                // sütun sayısı kadar döngü döndürülüyor.
+            {
+                for (int j = 0; j < raporDGV.Rows.Count; j++)               //satır sayısı kadar döngü döndürülüyor.
+                {
+                    excel.Range range = (excel.Range)sayfa.Cells[j + 2, i + 1];  //tablodaki geri kalan değerler excel'e aktarıldı.
+                    range.Value2 = raporDGV[i, j].Value;
+                    range.Select();
+
+                }
+            }
+        }
+
+        private void KucukTarihDTP_ValueChanged(object sender, EventArgs e)
+        {
+            RaporListele();
+        }
+
+        private void BuyukTarihDTP_ValueChanged(object sender, EventArgs e)
+        {
+            RaporListele();
+        }
+
+        private void RaporUrunAd_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RaporListele();
+        }
+
+        private void RaporUrunTipi_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RaporListele();
+        }
         #endregion
 
-
+        
     }
 
 }

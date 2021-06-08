@@ -82,14 +82,13 @@ namespace yazilimYapimi
             IOnay onay = onayFabrikası.OnaylamaNesnesiOlustur("UrunOnay");
             onay.Onayla(UserID, ItemName ,ItemAmount ,ItemID, MoneyID);
 
-            MessageBox.Show("Urun talebi onylanmıştır!");
-
             UrunistekListele();
 
             //Mevcut Sartlar değiştiği için sistemde sıraya alınmış işlemlerden uygun hale gelen varsa alım yapılır.
             IslemSira ıslem = new IslemSira();
             ıslem.SıradakiIslemleriKontrolEt();
 
+            MessageBox.Show("Ürün Talebi Onaylanmıştır!", "Ürün Talebi", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             labelMuhasaebe.Text = MuhasebePara;
         }
@@ -99,14 +98,12 @@ namespace yazilimYapimi
             OnayFabrikası onayFabrikası = new OnayFabrikası();
             IOnay onay = onayFabrikası.OnaylamaNesnesiOlustur("ParaOnay");
             onay.Onayla(UserID, "", "", "", MoneyID);
-
-            MessageBox.Show("Para talebi onylanmıştır!");
-
             Paraİsteklistele();
 
             //Mevcut Sartlar değiştiği için sistemde sıraya alınmış işlemlerden uygun hale gelen varsa alım yapılır.
             IslemSira ıslem = new IslemSira();
             ıslem.SıradakiIslemleriKontrolEt();
+            MessageBox.Show("Para Talebi Onaylanmıştır!", "Para Talebi", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
 
             labelMuhasaebe.Text = MuhasebePara;

@@ -402,6 +402,7 @@ namespace yazilimYapimi
                             EklemeFabrikası eklemeFabrikası = new EklemeFabrikası();
                             IEkle ekle = eklemeFabrikası.EklemeNesnesiOlustur("Urun");
                             ekle.Ekle(AlıcıID, IstenenUrun, IstenenMıktarbas.ToString(), AlınanMalınBirimFiyatı.ToString(), false, false, "", false, "TRY");
+                            MessageBox.Show("" + IstenenUrun + " istenildiği gibi birim fiyatı " + AlınanMalınBirimFiyatı + " olmak üzere " + IstenenMıktarbas + "Kg Alım islemi gerçekleştirilmiştir!");
 
 
                             // Alıcının Parası azaltılır.

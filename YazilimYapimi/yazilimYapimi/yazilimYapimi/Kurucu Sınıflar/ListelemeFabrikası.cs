@@ -35,6 +35,15 @@ namespace yazilimYapimi
 
             else return null;
         }
+        public IRapor RaporListeOlustur(string ListeTipi)
+        {
+            if (ListeTipi == "RaporListele")
+            {
+                return new RaporListele();
+            }
+            else return null;
+
+        }
 
     }
 }

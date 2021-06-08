@@ -50,3 +50,17 @@ C:\Users\O.F.Y\Documents\GitHub\Yazilim_Yapimi\YazilimYapimi\yazilimYapimi\yazil
 C:\Users\O.F.Y\Documents\GitHub\Yazilim_Yapimi\YazilimYapimi\yazilimYapimi\yazilimYapimi\obj\x64\Debug\yazilimYapimi.csproj.CoreCompileInputs.cache
 C:\Users\O.F.Y\Documents\GitHub\Yazilim_Yapimi\YazilimYapimi\yazilimYapimi\yazilimYapimi\obj\x64\Debug\yazilimYapimi.exe
 C:\Users\O.F.Y\Documents\GitHub\Yazilim_Yapimi\YazilimYapimi\yazilimYapimi\yazilimYapimi\obj\x64\Debug\yazilimYapimi.pdb
+C:\Users\HamzaKaya\Desktop\yazılım yapımı github\son\Yazilim_Yapimi-main\YazilimYapimi\yazilimYapimi\yazilimYapimi\obj\x64\Debug\yazilimYapimi.csprojAssemblyReference.cache
+C:\Users\HamzaKaya\Desktop\yazılım yapımı github\son\Yazilim_Yapimi-main\YazilimYapimi\yazilimYapimi\yazilimYapimi\obj\x64\Debug\yazilimYapimi.csproj.ResolveComReference.cache
+C:\Users\HamzaKaya\Desktop\yazılım yapımı github\son\Yazilim_Yapimi-main\YazilimYapimi\yazilimYapimi\yazilimYapimi\obj\x64\Debug\yazilimYapimi.FormGiris.resources
+C:\Users\HamzaKaya\Desktop\yazılım yapımı github\son\Yazilim_Yapimi-main\YazilimYapimi\yazilimYapimi\yazilimYapimi\obj\x64\Debug\yazilimYapimi.FormAdmin.resources
+C:\Users\HamzaKaya\Desktop\yazılım yapımı github\son\Yazilim_Yapimi-main\YazilimYapimi\yazilimYapimi\yazilimYapimi\obj\x64\Debug\yazilimYapimi.FormKullanici.resources
+C:\Users\HamzaKaya\Desktop\yazılım yapımı github\son\Yazilim_Yapimi-main\YazilimYapimi\yazilimYapimi\yazilimYapimi\obj\x64\Debug\yazilimYapimi.Properties.Resources.resources
+C:\Users\HamzaKaya\Desktop\yazılım yapımı github\son\Yazilim_Yapimi-main\YazilimYapimi\yazilimYapimi\yazilimYapimi\obj\x64\Debug\yazilimYapimi.ÜyeOl.resources
+C:\Users\HamzaKaya\Desktop\yazılım yapımı github\son\Yazilim_Yapimi-main\YazilimYapimi\yazilimYapimi\yazilimYapimi\obj\x64\Debug\yazilimYapimi.csproj.GenerateResource.cache
+C:\Users\HamzaKaya\Desktop\yazılım yapımı github\son\Yazilim_Yapimi-main\YazilimYapimi\yazilimYapimi\yazilimYapimi\obj\x64\Debug\yazilimYapimi.csproj.CoreCompileInputs.cache
+C:\Users\HamzaKaya\Desktop\yazılım yapımı github\son\Yazilim_Yapimi-main\YazilimYapimi\yazilimYapimi\yazilimYapimi\obj\x64\Debug\yazilimYapimi.exe
+C:\Users\HamzaKaya\Desktop\yazılım yapımı github\son\Yazilim_Yapimi-main\YazilimYapimi\yazilimYapimi\yazilimYapimi\obj\x64\Debug\yazilimYapimi.pdb
+C:\Users\HamzaKaya\Desktop\yazılım yapımı github\son\Yazilim_Yapimi-main\YazilimYapimi\yazilimYapimi\yazilimYapimi\bin\x64\Debug\yazilimYapimi.exe.config
+C:\Users\HamzaKaya\Desktop\yazılım yapımı github\son\Yazilim_Yapimi-main\YazilimYapimi\yazilimYapimi\yazilimYapimi\bin\x64\Debug\yazilimYapimi.exe
+C:\Users\HamzaKaya\Desktop\yazılım yapımı github\son\Yazilim_Yapimi-main\YazilimYapimi\yazilimYapimi\yazilimYapimi\bin\x64\Debug\yazilimYapimi.pdb
