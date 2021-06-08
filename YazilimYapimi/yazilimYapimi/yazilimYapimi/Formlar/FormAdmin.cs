@@ -82,6 +82,8 @@ namespace yazilimYapimi
             IOnay onay = onayFabrikası.OnaylamaNesnesiOlustur("UrunOnay");
             onay.Onayla(UserID, ItemName ,ItemAmount ,ItemID, MoneyID);
 
+            MessageBox.Show("Urun talebi onylanmıştır!");
+
             UrunistekListele();
 
             //Mevcut Sartlar değiştiği için sistemde sıraya alınmış işlemlerden uygun hale gelen varsa alım yapılır.
@@ -97,6 +99,9 @@ namespace yazilimYapimi
             OnayFabrikası onayFabrikası = new OnayFabrikası();
             IOnay onay = onayFabrikası.OnaylamaNesnesiOlustur("ParaOnay");
             onay.Onayla(UserID, "", "", "", MoneyID);
+
+            MessageBox.Show("Para talebi onylanmıştır!");
+
             Paraİsteklistele();
 
             //Mevcut Sartlar değiştiği için sistemde sıraya alınmış işlemlerden uygun hale gelen varsa alım yapılır.

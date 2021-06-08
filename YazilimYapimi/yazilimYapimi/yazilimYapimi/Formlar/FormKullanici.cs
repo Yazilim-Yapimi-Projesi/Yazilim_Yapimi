@@ -243,13 +243,13 @@ namespace yazilimYapimi
 
             //Yapılabiliyorsa işlemi yap.
             if (alım.ManuelAlimYap(UserIdLabel.Text, cmbxAlinacakUrun.Text, txtAlımMiktarı.Text, Convert.ToInt32(txtAlımBirimFiyat.Text), labelPara.Text))
-            { }
+            { MessageBox.Show("İstediğiniz şekilde alım islemi gerçekleştirilmiştir."); }
             else 
             {
                 //Yapılamıyorsa islemi sıraya al.
                 IslemSira ıslem = new IslemSira();
                 ıslem.SırayaAl(UserIdLabel.Text, cmbxAlinacakUrun.Text, txtAlımMiktarı.Text, txtAlımBirimFiyat.Text);
-                MessageBox.Show("Sistemde istediğini şartlarda satılık ürün yok.\n İşleminiz sıraya alınmıştır uygun şartlar oluştuğu zaman alım gerçekleştirilecektir.");
+                MessageBox.Show("Sistemde istediğini şartlarda satılık ürün yok.\nİşleminiz sıraya alınmıştır uygun şartlar oluştuğu zaman alım gerçekleştirilecektir.");
             }
             
             PazardakiDigerUrunleriiistele();
